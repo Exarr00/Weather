@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    <h1>
-        hello
-    </h1>
+    <form action="/" method="POST">
+        <input type="text" name="city" placeholder="ENTER A CITY">
+    </form>
+    <button id="what">what</button>
+    <h1 id="weather_name"><%= weather.name %> </h1>
+    <h1 id="weather_name"><%= country_name %> </h1>
+    <img src="<%= country_flag %>"  alt="">
+    <h1 id="weather_name"><%= weather.main.temp %> </h1>
+    <% forecast.list.forEach(temp=> { %>
+        <h1>
+            <%= new Date(temp.dt * 1000 - forecast.city.timezone * 1000) %>
+        </h1>
+    <% }) %>
 </body>
+<script src="../public/js/index.js"></script>
 </html>
