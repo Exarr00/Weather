@@ -18,6 +18,7 @@ router.get('/', async (req, res) => {
   const forecast_uri = `https://api.openweathermap.org/data/2.5/forecast?q=${ip.city}&appid=${process.env.WEATHER_KEY}&units=imperial`
   const forecast_Response = await fetch(forecast_uri);
   const forecast = await forecast_Response.json()
+  console.log(weather.wind)
   res.render('index', { weather: weather , country_name: country[0].name.common, country_flag: country[0].flags.png, forecast:forecast});
 });
 

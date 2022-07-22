@@ -13,15 +13,66 @@
         <input type="text" name="city" placeholder="ENTER A CITY">
     </form>
     <button id="what">what</button>
-    <h1 id="weather_name"><%= weather.name %> </h1>
-    <h1 id="weather_name"><%= country_name %> </h1>
-    <img src="<%= country_flag %>"  alt="">
-    <h1 id="weather_name"><%= weather.main.temp %> </h1>
-    <% forecast.list.forEach(temp=> { %>
-        <h1>
-            <%= new Date(temp.dt * 1000 - forecast.city.timezone * 1000) %>
-        </h1>
-    <% }) %>
+    <div>
+        <h1 id="weather_name"><%= weather.name %> </h1>
+        <h1 id="weather_name"><%= country_name %> </h1>
+        <h1 id="weather_name"><%= weather.main.temp %> </h1>
+        <h1 id="weather_name">High: <%= weather.main.temp_max %> </h1>
+        <h1 id="weather_name">Low :<%= weather.main.temp_min %> </h1>
+    </div>
+    <div>
+        <img src="<%= country_flag %>"  alt="">
+        <img src=<%= `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png` %> />
+        <h1>Feels Like:<%= weather.main.feels_like %> </h1>
+        <h1>Pressure: <%= weather.main.pressure %> hPa</h1>
+        <h1>Humidity: <%= weather.main.humidity %> %</h1>
+        <h1>Wind Speed: <%= weather.wind.speed %> mph</h1>
+        <h1><%= new Date(weather.dt * 1000).toLocaleTimeString() %> </h1>
+        <h1><%= new Date(weather.sys.sunrise * 1000).toLocaleTimeString() %> </h1>
+        <h1><%= new Date(weather.sys.sunset * 1000).toLocaleTimeString() %></h1>
+    </div>
+    <div class="forecast">
+        <% forecast.list.forEach(temp=> { %>
+                <% const date = new Date(temp.dt * 1000) %>
+                <div class="day-temp">
+                    <p><%= date.toLocaleDateString() %></p>
+                    <p><%= date.toLocaleTimeString('en-US', {hour12: false}) %></p>
+                    <p><%= date.toLocaleTimeString()%></p>
+                    <p><%= temp.main.temp %></p>
+                    <img src=<%= `http://openweathermap.org/img/wn/${temp.weather[0].icon}@2x.png` %> />
+                    <p><%= temp.weather[0].main %></p>
+                    <p><%= temp.weather[0].description %></p>
+                </div>
+        <% }) %>
+    </div>
 </body>
 <script src="../public/js/index.js"></script>
+
+<style>
+    *,*::before,*::after{
+        margin: 0;
+        padding:0;
+        box-sizing: border-box;
+    }
+    body{
+        height:100vh;
+        width: 100vw;
+    }
+
+    div{
+        width: 100vw;
+    }
+    .forecast{
+        display: flex;
+        width: 75vw;
+        overflow: auto;
+        grid-gap: 5px;
+    }
+
+    .day-temp{
+        display: flex;
+        flex-direction: column;
+        border: 5px solid black;
+    }
+</style>
 </html>
