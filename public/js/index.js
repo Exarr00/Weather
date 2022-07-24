@@ -1,11 +1,15 @@
-const wname = document.getElementById('weather_name')
-const what = document.getElementById('what')
+const wname = document.querySelector('.city')
+const searchForm = document.getElementById('search_form')
+const city = document.querySelector('input[name=city]')
 
-function fetchWeather() {
-    fetch('/search').then((res) => res.json()).then((data) => {
-        console.log(data.name)
-        wname.innerHTML = data.name
-    })
+function fetchWeather(e) {
+    e.preventDefault();
+    fetch(`/search/${city.value}`).then((res) => res.json()).then((data) => {
+        console.log(data)
+       wname.innerHTML='hello'
+    }).catch(error => {wname.innerHTML='error'})
 }
 
-what.addEventListener('click', fetchWeather)
+searchForm.addEventListener('submit', fetchWeather)
+
+//minamilist wallpaper desktop landscape
