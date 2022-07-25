@@ -23,8 +23,8 @@ router.get('/search/:city', async(req, res) => {
     await getData(req.params.city)
     res.json({weather, country_name, country_flag, forecast})
   } catch (error) {
-    console.log(error.name)
-    res.status(404).json(error)
+    console.log(error.response.statusText)
+    res.status(404).json({error: error.response.statusText})
   }
 })
 
