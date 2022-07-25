@@ -31,14 +31,14 @@
                 <h1 class="current-time"><%= new Date(weather.dt * 1000).toLocaleTimeString() %> </h1>
             </div>
             <div class="extra-info">
-                <img src="<%= country_flag %>"  alt="">
-                <img src=<%= `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png` %> />
-                <h1>Feels Like:<%= weather.main.feels_like %> </h1>
-                <h1>Pressure: <%= weather.main.pressure %> hPa</h1>
-                <h1>Humidity: <%= weather.main.humidity %> %</h1>
-                <h1>Wind Speed: <%= weather.wind.speed %> mph</h1>
-                <h1><%= new Date(weather.sys.sunrise * 1000).toLocaleTimeString() %> </h1>
-                <h1><%= new Date(weather.sys.sunset * 1000).toLocaleTimeString() %></h1>
+                <img src="<%= country_flag %>"  alt="" id="flag"/>
+                <img src=<%= `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png` %> id="weather-icon"/>
+                <h1 class="feels-like">Feels Like:<%= weather.main.feels_like %> </h1>
+                <h1 class="pressure" >Pressure: <%= weather.main.pressure %> hPa</h1>
+                <h1 class="humidity">Humidity: <%= weather.main.humidity %> %</h1>
+                <h1 class="wind-speed">Wind Speed: <%= weather.wind.speed %> mph</h1>
+                <h1 class="sunrise"><%= new Date(weather.sys.sunrise * 1000).toLocaleTimeString() %> </h1>
+                <h1 class="sunset"><%= new Date(weather.sys.sunset * 1000).toLocaleTimeString() %></h1>
             </div>
             <div class="forecast">
                 <% forecast.list.forEach(temp=> { %>
