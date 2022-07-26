@@ -1,8 +1,9 @@
-import updatePage from "./updatePage.js";
+import {updatePage, changeDegree} from "./update.js";
 
 const wname = document.querySelector('.city')
 const searchForm = document.getElementById('search_form')
 const city = document.querySelector('input[name=city]')
+const degree = document.getElementById('degrees')
 
 function fetchWeather(e) {
     e.preventDefault();
@@ -17,5 +18,6 @@ function fetchWeather(e) {
 }
 
 searchForm.addEventListener('submit', fetchWeather)
+degree.addEventListener('click', changeDegree)
 
 //minamilist wallpaper desktop landscape

@@ -67,4 +67,19 @@ function updatePage(data) {
   });
 }
 
-export default updatePage;
+function changeDegree(e) {
+  if (e.target.checked) {
+    return (current_temp.innerText = FtoC(parseFloat(current_temp.innerText)));
+  }
+  current_temp.innerText = CtoF(parseFloat(current_temp.innerText));
+}
+
+function FtoC(degree) {
+  return Math.round((degree - 32) * 0.5556 * 100) / 100;
+}
+
+function CtoF(degree) {
+  return Math.round((degree * 1.8 + 32) * 100) / 100;
+}
+
+export { updatePage, changeDegree };
