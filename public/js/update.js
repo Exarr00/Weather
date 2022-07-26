@@ -13,20 +13,33 @@ const wind_speed = document.querySelector('.wind-speed');
 const sunrise = document.querySelector('.sunrise');
 const sunset = document.querySelector('.sunset');
 const forecast = document.querySelector('.forecast');
+const checkbox = document.getElementById('degrees');
 
 function updatePage(data) {
+  let checked = false;
+  if (checkbox.checked) {
+    checked = true;
+  }
   forecast.replaceChildren();
   city.innerText = data.weather.name;
   country.innerText = data.country_name;
-  current_temp.innerText = data.weather.main.temp;
-  max_temp.innerText = 'High: ' + data.weather.main.temp_max;
-  min_temp.innerText = 'Low: ' + data.weather.main.temp_min;
+  current_temp.innerText = !checked
+    ? data.weather.main.temp
+    : FtoC(data.weather.main.temp);
+  max_temp.innerText = !checked
+    ? 'High: ' + data.weather.main.temp_max
+    : 'High: ' + FtoC(data.weather.main.temp_max);
+  min_temp.innerText = !checked
+    ? 'Low: ' + data.weather.main.temp_min
+    : 'Low: ' + FtoC(data.weather.main.temp_min);
   current_time.innerText = new Date(
     data.weather.dt * 1000
   ).toLocaleTimeString();
   country_flag.src = data.country_flag;
   weather_icon.src = `http://openweathermap.org/img/wn/${data.weather.weather[0].icon}@2x.png`;
-  feels_like.innerText = data.weather.main.feels_like;
+  feels_like.innerText = !checked
+    ? 'Feels Like: ' + data.weather.main.feels_like
+    : 'Feels Like: ' + FtoC(data.weather.main.feels_like);
   pressure.innerText = data.weather.main.pressure;
   humidity.innerText = data.weather.main.humidity;
   wind_speed.innerText = data.weather.wind.speed;
@@ -50,7 +63,8 @@ function updatePage(data) {
     dateString.innerText = date.toLocaleDateString();
     timetweleve.innerText = date.toLocaleTimeString('en-US', { hour12: false });
     time.innerText = date.toLocaleTimeString();
-    tempMain.innerText = temp.main.temp;
+    tempMain.innerText = !checked ? temp.main.temp : FtoC(temp.main.temp);
+    tempMain.dataset.temp = '';
     weatherMain.innerText = temp.weather[0].main;
     desc.innerText = temp.weather[0].description;
     icon.src = `http://openweathermap.org/img/wn/${temp.weather[0].icon}@2x.png`;
@@ -68,10 +82,15 @@ function updatePage(data) {
 }
 
 function changeDegree(e) {
+  const allTemps = document.querySelectorAll('[data-temp]');
   if (e.target.checked) {
-    return (current_temp.innerText = FtoC(parseFloat(current_temp.innerText)));
+    return allTemps.forEach(the_temp => {
+      the_temp.innerText = FtoC(parseFloat(the_temp.innerText))
+    })
   }
-  current_temp.innerText = CtoF(parseFloat(current_temp.innerText));
+  allTemps.forEach(the_temp => {
+    the_temp.innerText = CtoF(parseFloat(the_temp.innerText))
+  })
 }
 
 function FtoC(degree) {

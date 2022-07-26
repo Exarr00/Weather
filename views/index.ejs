@@ -23,15 +23,15 @@
             <div class="main">
                 <h1 class="city"><%= weather.name %> </h1>
                 <h1 class="country"><%= country_name %> </h1>
-                <h1 class="current-temp"><%= weather.main.temp %> </h1>
-                <h1 class="max-temp">High: <%= weather.main.temp_max %> </h1>
-                <h1 class="min-temp">Low :<%= weather.main.temp_min %> </h1>
+                <h1 class="current-temp" data-temp><%= weather.main.temp %></h1>
+                <h1 class="max-temp">High: <span data-temp><%= weather.main.temp_max %></span> </h1>
+                <h1 class="min-temp">Low : <span data-temp><%= weather.main.temp_min %> </span></h1>
                 <h1 class="current-time"><%= new Date(weather.dt * 1000).toLocaleTimeString() %> </h1>
             </div>
             <div class="extra-info">
                 <img src="<%= country_flag %>"  alt="" id="flag"/>
                 <img src=<%= `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png` %> id="weather-icon"/>
-                <h1 class="feels-like">Feels Like:<%= weather.main.feels_like %> </h1>
+                <h1 class="feels-like">Feels Like: <span data-temp><%= weather.main.feels_like %></span> </h1>
                 <h1 class="pressure" >Pressure: <%= weather.main.pressure %> hPa</h1>
                 <h1 class="humidity">Humidity: <%= weather.main.humidity %> %</h1>
                 <h1 class="wind-speed">Wind Speed: <%= weather.wind.speed %> mph</h1>
@@ -45,7 +45,7 @@
                             <p><%= date.toLocaleDateString() %></p>
                             <p><%= date.toLocaleTimeString('en-US', {hour12: false}) %></p>
                             <p><%= date.toLocaleTimeString()%></p>
-                            <p><%= temp.main.temp %></p>
+                            <p data-temp><%= temp.main.temp %></p>
                             <img src=<%= `http://openweathermap.org/img/wn/${temp.weather[0].icon}@2x.png` %> />
                             <p><%= temp.weather[0].main %></p>
                             <p><%= temp.weather[0].description %></p>
