@@ -1,12 +1,12 @@
 const city = document.querySelector('.city');
 const country = document.querySelector('.country');
 const current_temp = document.querySelector('.current-temp');
-const max_temp = document.querySelector('.max-temp');
-const min_temp = document.querySelector('.min-temp');
+const max_temp = document.querySelector('.max-temp span');
+const min_temp = document.querySelector('.min-temp span');
 const current_time = document.querySelector('.current-time');
 const country_flag = document.getElementById('flag');
 const weather_icon = document.getElementById('weather-icon');
-const feels_like = document.querySelector('.feels-like');
+const feels_like = document.querySelector('.feels-like span');
 const pressure = document.querySelector('.pressure');
 const humidity = document.querySelector('.humidity');
 const wind_speed = document.querySelector('.wind-speed');
@@ -27,19 +27,19 @@ function updatePage(data) {
     ? data.weather.main.temp
     : FtoC(data.weather.main.temp);
   max_temp.innerText = !checked
-    ? 'High: ' + data.weather.main.temp_max
-    : 'High: ' + FtoC(data.weather.main.temp_max);
+    ?  + data.weather.main.temp_max
+    :  + FtoC(data.weather.main.temp_max);
   min_temp.innerText = !checked
-    ? 'Low: ' + data.weather.main.temp_min
-    : 'Low: ' + FtoC(data.weather.main.temp_min);
+    ? + data.weather.main.temp_min
+    : + FtoC(data.weather.main.temp_min);
   current_time.innerText = new Date(
     data.weather.dt * 1000
   ).toLocaleTimeString();
   country_flag.src = data.country_flag;
   weather_icon.src = `http://openweathermap.org/img/wn/${data.weather.weather[0].icon}@2x.png`;
   feels_like.innerText = !checked
-    ? 'Feels Like: ' + data.weather.main.feels_like
-    : 'Feels Like: ' + FtoC(data.weather.main.feels_like);
+    ? + data.weather.main.feels_like
+    : + FtoC(data.weather.main.feels_like);
   pressure.innerText = data.weather.main.pressure;
   humidity.innerText = data.weather.main.humidity;
   wind_speed.innerText = data.weather.wind.speed;
