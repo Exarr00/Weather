@@ -1,6 +1,6 @@
 const city = document.querySelector('.city');
 const country = document.querySelector('.country');
-const current_temp = document.querySelector('.current-temp');
+const current_temp = document.querySelector('.current-temp span');
 const max_temp = document.querySelector('.max-temp span');
 const min_temp = document.querySelector('.min-temp span');
 const current_time = document.querySelector('.current-time');
@@ -21,7 +21,7 @@ function updatePage(data) {
     checked = true;
   }
   forecast.replaceChildren();
-  city.innerText = data.weather.name;
+  city.innerText = data.weather.name + ',';
   country.innerText = data.country_name;
   current_temp.innerText = !checked
     ? data.weather.main.temp
