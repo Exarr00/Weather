@@ -54,23 +54,22 @@ function getForecast(forecast_list, checked){
     const day_temp = document.createElement('div');
     day_temp.classList.add('day-temp');
     const dateString = document.createElement('p');
-    const timetweleve = document.createElement('p');
+    // const timetweleve = document.createElement('p');
     const time = document.createElement('p');
     const tempMain = document.createElement('p');
     const weatherMain = document.createElement('p');
     const desc = document.createElement('p');
     const icon = document.createElement('img');
     dateString.innerText = date.toLocaleDateString();
-    timetweleve.innerText = date.toLocaleTimeString('en-US', { hour12: false });
+    // timetweleve.innerText = date.toLocaleTimeString('en-US', { hour12: false });
     time.innerText = date.toLocaleTimeString();
-    tempMain.innerText = check(temp.main.temp, checked);
+    tempMain.innerText = check(temp.main.temp, checked).toString() + '°';
     tempMain.dataset.temp = '';
     weatherMain.innerText = temp.weather[0].main;
     desc.innerText = temp.weather[0].description;
     icon.src = `http://openweathermap.org/img/wn/${temp.weather[0].icon}@2x.png`;
     day_temp.append(
       dateString,
-      timetweleve,
       time,
       tempMain,
       icon,

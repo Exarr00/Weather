@@ -1,0 +1,104 @@
+header{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    align-items: center;
+    overflow-x: hidden;
+    user-select: none;
+}
+
+header input[type=text]{
+    border-radius: var(--radius);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 0.5rem;
+    border: none;
+}
+
+header input[type=text]:focus{
+    outline: none;
+}
+
+header input[type=text]::placeholder{
+    color: white;
+}
+
+.degree-toggle{
+    --width: 3.6rem;
+    --height: 2rem;
+    --inner: calc(var(--height)/1.3);
+    --innersides: calc((var(--height) - var(--inner)) / 2);
+    --border-radius: 50px
+}
+
+.degree-input{
+    display: none;
+}
+
+.degree-slider{
+    position: relative;
+    width: var(--width);
+    height: var(--height);
+    border-radius: var(--border-radius);
+    background-color: rgba(0, 0, 0, 0.5);
+    color:white;
+    text-shadow: none;
+}
+
+.degree-slider::after{
+    content: "";
+    position: absolute;
+    width: var(--inner);
+    height: var(--inner);
+    left: var(--innersides);
+    top: var(--innersides);
+    border-radius: var(--border-radius);
+    background-color: white;
+    transition: transform 0.2s;
+}
+
+.degree-input:checked ~ 
+.degree-slider::after{
+    transform: translateX(calc(var(--width) - calc(var(--innersides)*2) - var(--inner)));
+}
+
+.input-c,.input-f{
+    position: absolute;
+    font-size: calc(var(--inner) - 0.2rem);
+    top: calc(var(--innersides) - 0.1rem);
+    transition: opacity 0.1s ease-in;
+}
+
+.input-f{
+    right: calc(var(--innersides) + 0.1rem);
+}
+
+.input-c{
+    opacity: 0;
+    left: calc(var(--innersides) + 0.1rem);
+}
+
+.degree-input:checked ~.degree-slider .input-c{
+    opacity: 1;
+}
+
+.degree-input:checked ~.degree-slider .input-f{
+    opacity: 0;
+}
+
+.search-container{
+    position: relative;
+}
+
+.error-msg{
+    display: none;
+    position: absolute;
+    top: 0;
+    right:100%;
+    margin-right: 0.5rem;
+    padding: 0.5rem;
+    background-color: rgba(255, 0, 0, 0.7);
+    border-radius: var(--radius);
+    text-align: center;
+    width: 20ch;
+}

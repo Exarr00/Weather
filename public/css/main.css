@@ -1,0 +1,78 @@
+.container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+    "main info"
+    "forecast forecast";
+    place-items: center;
+    row-gap: 1.5rem;
+}
+
+.main{
+    grid-area: main;
+}
+
+.country{
+    text-align: right;
+}
+
+.current-temp, .current-time{
+    text-align: center;
+}
+
+.low-high{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.extra-info{
+    grid-area: info;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: var(--radius);
+    padding: 1rem;
+    line-height: 1.5rem;
+}
+
+.extra-info-imgs{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.extra-info-data{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.forecast{
+    display: flex;
+    overflow-x: scroll;
+    width: 82%;
+    gap:1rem;
+    padding: 1rem;
+    grid-area: forecast;
+    line-height: 1.5rem;
+}
+
+.day-temp{
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    min-width: 20ch;
+    padding: 0.5rem;
+    border-radius: var(--radius);
+}
+
+
+@media screen and (max-width: 1000px) {
+    .container{
+        grid-template-areas: 
+        "main main"
+        "info info"
+        "forecast forecast";
+    }
+}
+
