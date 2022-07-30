@@ -7,11 +7,13 @@ const current_time = document.querySelector('.current-time');
 const country_flag = document.getElementById('flag');
 const weather_icon = document.getElementById('weather-icon');
 const feels_like = document.querySelector('.feels-like span');
-const pressure = document.querySelector('.pressure');
-const humidity = document.querySelector('.humidity');
-const wind_speed = document.querySelector('.wind-speed');
-const sunrise = document.querySelector('.sunrise');
-const sunset = document.querySelector('.sunset');
+const weather_main = document.querySelector('.weather-main span');
+const weather_desc = document.querySelector('.weather-desc span')
+const pressure = document.querySelector('.pressure span');
+const humidity = document.querySelector('.humidity span');
+const wind_speed = document.querySelector('.wind-speed span');
+const sunrise = document.querySelector('.sunrise span');
+const sunset = document.querySelector('.sunset span');
 const forecast = document.querySelector('.forecast');
 const checkbox = document.getElementById('degrees');
 
@@ -23,23 +25,17 @@ function updatePage(data) {
   forecast.replaceChildren();
   city.innerText = data.weather.name + ',';
   country.innerText = data.country_name;
-  current_temp.innerText = !checked
-    ? data.weather.main.temp
-    : FtoC(data.weather.main.temp);
-  max_temp.innerText = !checked
-    ?  + data.weather.main.temp_max
-    :  + FtoC(data.weather.main.temp_max);
-  min_temp.innerText = !checked
-    ? + data.weather.main.temp_min
-    : + FtoC(data.weather.main.temp_min);
+  current_temp.innerText = check(data.weather.main.temp, checked)
+  max_temp.innerText = check(data.weather.main.temp_max, checked)
+  min_temp.innerText = check(data.weather.main.temp_min, checked)
   current_time.innerText = new Date(
     data.weather.dt * 1000
   ).toLocaleTimeString();
   country_flag.src = data.country_flag;
   weather_icon.src = `http://openweathermap.org/img/wn/${data.weather.weather[0].icon}@2x.png`;
-  feels_like.innerText = !checked
-    ? + data.weather.main.feels_like
-    : + FtoC(data.weather.main.feels_like);
+  feels_like.innerText = check(data.weather.main.feels_like, checked)
+  weather_main.innerText = data.weather.weather[0].main;
+  weather_desc.innerText = data.weather.weather[0].description;
   pressure.innerText = data.weather.main.pressure;
   humidity.innerText = data.weather.main.humidity;
   wind_speed.innerText = data.weather.wind.speed;
@@ -49,7 +45,11 @@ function updatePage(data) {
   sunset.innerText = new Date(
     data.weather.sys.sunset * 1000
   ).toLocaleTimeString();
-  data.forecast.list.forEach((temp) => {
+  getForecast(data.forecast.list, checked);
+}
+
+function getForecast(forecast_list, checked){
+  forecast_list.forEach((temp) => {
     const date = new Date(temp.dt * 1000);
     const day_temp = document.createElement('div');
     day_temp.classList.add('day-temp');
@@ -63,7 +63,7 @@ function updatePage(data) {
     dateString.innerText = date.toLocaleDateString();
     timetweleve.innerText = date.toLocaleTimeString('en-US', { hour12: false });
     time.innerText = date.toLocaleTimeString();
-    tempMain.innerText = !checked ? temp.main.temp : FtoC(temp.main.temp);
+    tempMain.innerText = check(temp.main.temp, checked);
     tempMain.dataset.temp = '';
     weatherMain.innerText = temp.weather[0].main;
     desc.innerText = temp.weather[0].description;
@@ -79,6 +79,12 @@ function updatePage(data) {
     );
     forecast.append(day_temp);
   });
+}
+
+function check(weather_data, checked){
+  return !checked
+  ? weather_data
+  : FtoC(weather_data);
 }
 
 function changeDegree(e) {

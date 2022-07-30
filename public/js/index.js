@@ -13,7 +13,8 @@ function fetchWeather(e) {
         }
         throw new Error('A problem occured while searching')
     }).then((data) => {
-        updatePage(data)
+        updatePage(data);
+        city.value = "";
     }).catch(error => {console.log(error)})
 }
 

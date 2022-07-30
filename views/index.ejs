@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../public/css/main.css">
-    <title>Document</title>
+    <title>Weather</title>
 </head>
 
 <body>
@@ -27,24 +27,34 @@
         </header>
         <div class="container">
             <div class="main">
-                <h1 class="city"><%= weather.name %> ,</h1>
+                <h1 class="city"><%= weather.name %>,</h1>
                 <h2 class="country"><%= country_name %> </h2>
                 <h1 class="current-temp"><span data-temp><%= weather.main.temp %></span>°</h1>
                 <div class="low-high">
                     <h3 class="max-temp">High: <span data-temp><%= weather.main.temp_max %></span>°</h3>
-                    <h3 class="min-temp">Low : <span data-temp><%= weather.main.temp_min %></span>°</h3>
+                    <h3 class="min-temp">Low: <span data-temp><%= weather.main.temp_min %></span>°</h3>
                 </div>
                 <h3 class="current-time"><%= new Date(weather.dt * 1000).toLocaleTimeString() %> </h3>
             </div>
             <div class="extra-info">
-                <img src="<%= country_flag %>"  alt="" id="flag"/>
-                <img src=<%= `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png` %> id="weather-icon"/>
-                <h3 class="feels-like">Feels Like: <span data-temp><%= weather.main.feels_like %></span>°</h3>
-                <h3 class="pressure" >Pressure: <%= weather.main.pressure %> hPa</h3>
-                <h3 class="humidity">Humidity: <%= weather.main.humidity %> %</h3>
-                <h3 class="wind-speed">Wind Speed: <%= weather.wind.speed %> mph</h3>
-                <h3 class="sunrise">Sunrise: <%= new Date(weather.sys.sunrise * 1000).toLocaleTimeString() %> </h3>
-                <h3 class="sunset">Sunset: <%= new Date(weather.sys.sunset * 1000).toLocaleTimeString() %></h3>
+                <div class="extra-info-imgs">
+                    <img src="<%= country_flag %>"  alt="" id="flag"/>
+                    <img src=<%= `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png` %> id="weather-icon"/>
+                </div>
+                <div class="extra-info-data">
+                    <div id="extra-info-data-first">
+                        <h3 class="weather-main">Weather: <span><%= weather.weather[0].main %></span> </h3>
+                        <h3 class="feels-like">Feels Like: <span data-temp><%= weather.main.feels_like %></span>°</h3>
+                        <h3 class="humidity">Humidity: <span> <%= weather.main.humidity %></span> %</h3>
+                        <h3 class="sunrise">Sunrise: <span><%= new Date(weather.sys.sunrise * 1000).toLocaleTimeString() %></span> </h3>
+                    </div>
+                    <div id="extra-info-data-second">
+                        <h3 class="weather-desc">Desc: <span><%= weather.weather[0].description %></span></h3>
+                        <h3 class="wind-speed">Wind Speed: <span><%= weather.wind.speed %> </span> mph</h3>
+                        <h3 class="pressure" >Pressure: <span><%= weather.main.pressure %></span> hPa</h3>
+                        <h3 class="sunset">Sunset: <span> <%= new Date(weather.sys.sunset * 1000).toLocaleTimeString() %></span></h3>
+                    </div>
+                </div>
             </div>
             <div class="forecast">
                 <% forecast.list.forEach(temp=> { %>
@@ -82,13 +92,14 @@
         background-size: cover;
         color:white;
         text-shadow: 1px 1px 10px black;
+        text-transform: uppercase;
     }
 
     .forecast{
         display: flex;
-        overflow: auto;
+        overflow-x: scroll;
         width: 82%;
-        grid-gap: 5px;
+        gap:1rem;
         grid-area: forecast;
     }
 
@@ -114,12 +125,30 @@
 
     .extra-info{
         grid-area: info;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 20px;
+        padding: 1rem;
+    }
+
+    .extra-info-imgs{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .extra-info-data{
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
     }
 
     .day-temp{
         display: flex;
         flex-direction: column;
+        place-items: center;
+        min-width: 25ch;
         border: 5px solid black;
+        padding: 0.5rem;
     }
 
     .container{
@@ -218,6 +247,8 @@
         opacity: 0;
     }
 
-
+    img{
+        width: 20ch;
+    }
 </style>
 </html>
