@@ -19,10 +19,11 @@
                     <p class="input-c">°C</p>
                 </div>
             </label>
-            <div>
-                <form id="search_form">
+            <div class="search-container">
+                <form id="search-form">
                     <input type="text" name="city" placeholder="ENTER A CITY">
                 </form>
+                <div class="error-msg"><p>Not Found!</p></div>
             </div>
         </header>
         <div class="container">
@@ -248,6 +249,23 @@
     }
 
     img{
+        width: 20ch;
+    }
+
+    .search-container{
+        position: relative;
+    }
+
+    .error-msg{
+        display: none;
+        position: absolute;
+        top: 0;
+        right:100%;
+        margin-right: 0.5rem;
+        padding: 0.5rem;
+        background-color: rgba(255, 0, 0, 0.7);
+        border-radius: 20px;
+        text-align: center;
         width: 20ch;
     }
 </style>
