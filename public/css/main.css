@@ -6,6 +6,7 @@
     "forecast forecast";
     place-items: center;
     row-gap: 1.5rem;
+    margin-top: 1rem;
 }
 
 .main{
@@ -41,8 +42,8 @@
 }
 
 .extra-info-data{
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 1rem;
 }
 
@@ -73,6 +74,22 @@
         "main main"
         "info info"
         "forecast forecast";
+    }
+
+    .city{
+        text-align: center;
+    }
+
+    .country{
+        text-align: center;
+    }
+
+    .extra-info-imgs{
+        flex-direction: column;
+    }
+
+    .extra-info-data{
+        grid-template-columns: 1fr;
     }
 }
 
