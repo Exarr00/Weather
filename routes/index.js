@@ -11,6 +11,7 @@ let forecast = null;
 router.get('/', async (req, res) => {
   try {
     const ip_Response = await axios.get(ip_uri);
+    console.log(city)
     await getData(ip_Response.data.city)
     res.render('index', { weather, country_name, country_flag, forecast });
   } catch (error) {
@@ -20,6 +21,7 @@ router.get('/', async (req, res) => {
     console.log(error.response.headers);
     console.log('Error', error.message)
     console.log(process.env.GEO_KEY)
+    console.log(process.env.WEATHER_KEY)
   }
 });
 
