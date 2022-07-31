@@ -11,6 +11,7 @@ let forecast = null;
 router.get('/', async (req, res) => {
   try {
     const ip_Response = await axios.get(ip_uri);
+    console.log(ip_Response)
     await getData(ip_Response.data.city)
     res.render('index', { weather, country_name, country_flag, forecast });
   } catch (error) {
