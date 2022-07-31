@@ -11,7 +11,6 @@ let forecast = null;
 router.get('/', async (req, res) => {
   try {
     const ip_Response = await axios.get(ip_uri);
-    console.log(city)
     await getData(ip_Response.data.city)
     res.render('index', { weather, country_name, country_flag, forecast });
   } catch (error) {
@@ -36,6 +35,7 @@ router.get('/search/:city', async(req, res) => {
 })
 
 async function getData(city) {
+  console.log(city)
   const weather_uri = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.WEATHER_KEY}&units=imperial`;
   const weather_Response = await axios.get(weather_uri);
   weather = weather_Response.data
