@@ -15,6 +15,7 @@ router.get('/', async (req, res) => {
     res.render('index', { weather, country_name, country_flag, forecast });
   } catch (error) {
     console.log(error.name);
+    console.log(error)
   }
 });
 

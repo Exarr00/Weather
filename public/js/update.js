@@ -71,8 +71,8 @@ function getForecast(forecast_list, checked){
     day_temp.append(
       dateString,
       time,
-      tempMain,
       icon,
+      tempMain,
       weatherMain,
       desc
     );

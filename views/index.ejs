@@ -61,8 +61,8 @@
                         <div class="day-temp">
                             <p><%= date.toLocaleDateString() %></p>
                             <p><%= date.toLocaleTimeString()%></p>
-                            <p data-temp><%= temp.main.temp %>°</p>
                             <img src=<%= `http://openweathermap.org/img/wn/${temp.weather[0].icon}@2x.png` %> />
+                            <p data-temp><%= temp.main.temp %>°</p>
                             <p><%= temp.weather[0].main %></p>
                             <p><%= temp.weather[0].description %></p>
                         </div>
