@@ -37,6 +37,7 @@ router.get('/search/:city', async(req, res) => {
 async function getData(city) {
   console.log(city)
   const weather_uri = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.WEATHER_KEY}&units=imperial`;
+  console.log(weather_uri)
   const weather_Response = await axios.get(weather_uri);
   weather = weather_Response.data
   const country_uri = `https://restcountries.com/v3.1/alpha/${weather_Response.data.sys.country}`;
@@ -44,6 +45,7 @@ async function getData(city) {
   country_name = country_Response.data[0].name.common;
   country_flag = country_Response.data[0].flags.png;
   const forecast_uri = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${process.env.WEATHER_KEY}&units=imperial`;
+  console.log(forecast_uri)
   const forecast_Response= await axios.get(forecast_uri);
   forecast = forecast_Response.data
 }
