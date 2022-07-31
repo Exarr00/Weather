@@ -15,6 +15,10 @@ router.get('/', async (req, res) => {
     res.render('index', { weather, country_name, country_flag, forecast });
   } catch (error) {
     console.log(error.name);
+    console.log(error.response.data);
+    console.log(error.response.status);
+    console.log(error.response.headers);
+    console.log('Error', error.message)
     console.log(process.env.GEO_KEY)
   }
 });
