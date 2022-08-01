@@ -11,6 +11,7 @@
 
 .main{
     grid-area: main;
+    cursor: default;
 }
 
 .country{
@@ -33,6 +34,8 @@
     border-radius: var(--radius);
     padding: 1rem;
     line-height: 1.5rem;
+    max-width: 40vw;
+    cursor: default;
 }
 
 .extra-info-imgs{
@@ -55,6 +58,7 @@
     padding: 1rem;
     grid-area: forecast;
     line-height: 1.5rem;
+    cursor: pointer;
 }
 
 .day-temp{
@@ -65,6 +69,10 @@
     min-width: 20ch;
     padding: 0.5rem;
     border-radius: var(--radius);
+}
+
+.active{
+    cursor: grabbing;
 }
 
 
@@ -88,8 +96,14 @@
         flex-direction: column;
     }
 
+    .extra-info{
+        max-width: 80vw;
+    }
+}
+
+@media screen and (max-width: 550px)
+{
     .extra-info-data{
         grid-template-columns: 1fr;
     }
 }
-

@@ -1,9 +1,11 @@
 import { updatePage, changeDegree } from './update.js';
+import { start, end, move } from './slider.js'
 
 const error_msg = document.querySelector('.error-msg');
 const searchForm = document.getElementById('search-form');
 const city = document.querySelector('input[name=city]');
 const degree = document.getElementById('degrees');
+const forecast = document.querySelector('.forecast')
 
 function fetchWeather(e) {
   e.preventDefault();
@@ -30,4 +32,8 @@ function fetchWeather(e) {
 
 searchForm.addEventListener('submit', fetchWeather);
 degree.addEventListener('click', changeDegree);
+forecast.addEventListener('mousedown', start)
+forecast.addEventListener('mouseup', end)
+forecast.addEventListener('mousemove', move)
+forecast.addEventListener('mouseleave', end)
 
