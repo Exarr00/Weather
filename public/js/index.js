@@ -31,4 +31,3 @@ function fetchWeather(e) {
 searchForm.addEventListener('submit', fetchWeather);
 degree.addEventListener('click', changeDegree);
 
-//minamilist wallpaper desktop landscape
