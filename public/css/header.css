@@ -1,4 +1,4 @@
-header{
+header {
     display: flex;
     justify-content: space-between;
     padding: 1rem 1rem 2rem 1rem;
@@ -7,7 +7,7 @@ header{
     user-select: none;
 }
 
-header input[type=text]{
+header input[type=text] {
     border-radius: var(--radius);
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
@@ -15,37 +15,37 @@ header input[type=text]{
     border: none;
 }
 
-header input[type=text]:focus{
+header input[type=text]:focus {
     outline: none;
 }
 
-header input[type=text]::placeholder{
+header input[type=text]::placeholder {
     color: white;
 }
 
-.degree-toggle{
+.degree-toggle {
     --width: 3.6rem;
     --height: 2rem;
     --inner: calc(var(--height)/1.3);
     --innersides: calc((var(--height) - var(--inner)) / 2);
-    --border-radius: 50px
+    --border-radius: 50px;
 }
 
-.degree-input{
+.degree-input {
     display: none;
 }
 
-.degree-slider{
+.degree-slider {
     position: relative;
     width: var(--width);
     height: var(--height);
     border-radius: var(--border-radius);
     background-color: rgba(0, 0, 0, 0.5);
-    color:white;
+    color: white;
     text-shadow: none;
 }
 
-.degree-slider::after{
+.degree-slider::after {
     content: "";
     position: absolute;
     width: var(--inner);
@@ -57,44 +57,44 @@ header input[type=text]::placeholder{
     transition: transform 0.2s;
 }
 
-.degree-input:checked ~ 
-.degree-slider::after{
+.degree-input:checked~.degree-slider::after {
     transform: translateX(calc(var(--width) - calc(var(--innersides)*2) - var(--inner)));
 }
 
-.input-c,.input-f{
+.input-c,
+.input-f {
     position: absolute;
     font-size: calc(var(--inner) - 0.2rem);
     top: calc(var(--innersides) - 0.1rem);
     transition: opacity 0.1s ease-in;
 }
 
-.input-f{
+.input-f {
     right: calc(var(--innersides) + 0.1rem);
 }
 
-.input-c{
+.input-c {
     opacity: 0;
     left: calc(var(--innersides) + 0.1rem);
 }
 
-.degree-input:checked ~.degree-slider .input-c{
+.degree-input:checked~.degree-slider .input-c {
     opacity: 1;
 }
 
-.degree-input:checked ~.degree-slider .input-f{
+.degree-input:checked~.degree-slider .input-f {
     opacity: 0;
 }
 
-.search-container{
+.search-container {
     position: relative;
 }
 
-.error-msg{
+.error-msg {
     display: none;
     position: absolute;
     top: calc(100% + 5px);
-    left:50%;
+    left: 50%;
     transform: translateX(-50%);
     margin-right: 0.5rem;
     padding: 0.2rem;
@@ -102,4 +102,15 @@ header input[type=text]::placeholder{
     border-radius: var(--radius);
     text-align: center;
     width: 15ch;
+}
+
+@media screen and (max-width: 1000px) {
+    .toggle-container{
+        display: flex;
+        align-items: center;
+    }
+
+    .degree-toggle {
+        position: fixed;
+    }
 }

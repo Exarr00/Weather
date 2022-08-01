@@ -59,6 +59,7 @@
     grid-area: forecast;
     line-height: 1.5rem;
     cursor: pointer;
+    margin-bottom: 2rem;
 }
 
 .day-temp{

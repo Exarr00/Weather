@@ -14,13 +14,15 @@
 <body>
     <div class="main-container">
         <header>
-            <label class="degree-toggle" for="degrees">
-                <input type="checkbox" class="degree-input" name="degrees" id="degrees">
-                <div class="degree-slider">
-                    <p class="input-f">°F</p>
-                    <p class="input-c">°C</p>
-                </div>
-            </label>
+            <div class="toggle-container">
+                <label class="degree-toggle" for="degrees">
+                    <input type="checkbox" class="degree-input" name="degrees" id="degrees">
+                    <div class="degree-slider">
+                        <p class="input-f">°F</p>
+                        <p class="input-c">°C</p>
+                    </div>
+                </label>
+            </div>
             <div class="search-container">
                 <form id="search-form">
                     <input type="text" name="city" placeholder="ENTER A CITY">
@@ -62,7 +64,7 @@
                             <p><%= date.toLocaleDateString() %></p>
                             <p><%= date.toLocaleTimeString()%></p>
                             <img src=<%= `http://openweathermap.org/img/wn/${temp.weather[0].icon}@2x.png` %> />
-                            <p data-temp><%= temp.main.temp %>°</p>
+                            <p><span data-temp><%= temp.main.temp %></span>°</p>
                             <p><%= temp.weather[0].main %></p>
                             <p><%= temp.weather[0].description %></p>
                         </div>

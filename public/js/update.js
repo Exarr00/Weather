@@ -65,9 +65,9 @@ function getForecast(forecast_list, checked) {
     // timetweleve.innerText = date.toLocaleTimeString('en-US', { hour12: false });
     time.innerText = date.toLocaleTimeString();
     tempMaindegree.innerText = check(temp.main.temp, checked);
+    tempMaindegree.dataset.temp = '';
     tempMain.appendChild(tempMaindegree);
-    tempMain.innerText = tempMain.innerText.concat('°');
-    tempMain.dataset.temp = '';
+    tempMain.innerHTML = tempMain.innerHTML.concat('°');
     weatherMain.innerText = temp.weather[0].main;
     desc.innerText = temp.weather[0].description;
     icon.src = `http://openweathermap.org/img/wn/${temp.weather[0].icon}@2x.png`;
