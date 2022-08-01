@@ -26,6 +26,3 @@ function move(e) {
 
 export { start, end, move };
 
-//active 
-//change pointer
-//

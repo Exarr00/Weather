@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public//css/index.css">
+    <link rel="stylesheet" href="../public/css/index.css">
     <link rel="stylesheet" href="../public/css/header.css">
     <link rel="stylesheet" href="../public/css/main.css">
     <title>Weather</title>
@@ -32,10 +32,10 @@
             <div class="main">
                 <h1 class="city"><%= weather.name %>,</h1>
                 <h2 class="country"><%= country_name %> </h2>
-                <h1 class="current-temp"><span data-temp><%= weather.main.temp %></span>°</h1>
+                <h1 class="current-temp"><span id="current-temp" data-temp><%= weather.main.temp %></span>°</h1>
                 <div class="low-high">
-                    <h3 class="max-temp">High: <span data-temp><%= weather.main.temp_max %></span>°</h3>
-                    <h3 class="min-temp">Low: <span data-temp><%= weather.main.temp_min %></span>°</h3>
+                    <h3>High: <span id="max-temp" data-temp><%= weather.main.temp_max %></span>°</h3>
+                    <h3>Low: <span id="min-temp" data-temp><%= weather.main.temp_min %></span>°</h3>
                 </div>
                 <h3 class="current-time"><%= new Date(weather.dt * 1000).toLocaleTimeString() %> </h3>
             </div>
@@ -45,14 +45,14 @@
                     <img src=<%= `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png` %> id="weather-icon"/>
                 </div>
                 <div class="extra-info-data">
-                    <h3 class="weather-main">Weather: <span><%= weather.weather[0].main %></span> </h3>
-                    <h3 class="weather-desc">Desc: <span><%= weather.weather[0].description %></span></h3>
-                    <h3 class="feels-like">Feels Like: <span data-temp><%= weather.main.feels_like %></span>°</h3>
-                    <h3 class="humidity">Humidity: <span> <%= weather.main.humidity %></span> %</h3>
-                    <h3 class="wind-speed">Wind Speed: <span><%= weather.wind.speed %> </span> mph</h3>
-                    <h3 class="pressure" >Pressure: <span><%= weather.main.pressure %></span> hPa</h3>
-                    <h3 class="sunrise">Sunrise: <span><%= new Date(weather.sys.sunrise * 1000).toLocaleTimeString() %></span> </h3>
-                    <h3 class="sunset">Sunset: <span> <%= new Date(weather.sys.sunset * 1000).toLocaleTimeString() %></span></h3>
+                    <h3>Weather: <span id="weather-main"><%= weather.weather[0].main %></span> </h3>
+                    <h3>Desc: <span id="weather-desc"><%= weather.weather[0].description %></span></h3>
+                    <h3>Feels Like: <span id="feels-like" data-temp><%= weather.main.feels_like %></span>°</h3>
+                    <h3>Humidity: <span id="humidity"> <%= weather.main.humidity %></span> %</h3>
+                    <h3>Wind Speed: <span id="wind-speed"><%= weather.wind.speed %> </span> mph</h3>
+                    <h3>Pressure: <span  id="pressure"><%= weather.main.pressure %></span> hPa</h3>
+                    <h3>Sunrise: <span id="sunrise"><%= new Date(weather.sys.sunrise * 1000).toLocaleTimeString() %></span> </h3>
+                    <h3>Sunset: <span id="sunset"> <%= new Date(weather.sys.sunset * 1000).toLocaleTimeString() %></span></h3>
                 </div>
             </div>
             <div class="forecast">
